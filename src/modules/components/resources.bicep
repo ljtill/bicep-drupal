@@ -4,10 +4,6 @@
 
 targetScope = 'resourceGroup'
 
-// -----
-// Notes
-// -----
-
 // ---------
 // Resources
 // ---------
