@@ -21,17 +21,22 @@ module components './modules/components/resources.bicep' = {
   scope: resourceGroup(config.resourceGroup)
   params: {
     config: config
+    credential: credential
   }
+  dependsOn: [
+    groups
+  ]
 }
 
 // ---------
 // Variables
 // ---------
 
-var defaults = loadJsonContent('defaults.json')
-
 // ----------
 // Parameters
 // ----------
 
 param config object = loadJsonContent('configs/main.json')
+
+@secure()
+param credential object
