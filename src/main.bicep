@@ -28,10 +28,6 @@ module components './modules/components/resources.bicep' = {
   ]
 }
 
-// ---------
-// Variables
-// ---------
-
 // ----------
 // Parameters
 // ----------

@@ -15,10 +15,6 @@ resource resourceGroup 'Microsoft.Resources/resourceGroups@2020-06-01' = {
   tags: config.tags
 }
 
-// ---------
-// Variables
-// ---------
-
 // ----------
 // Parameters
 // ----------
