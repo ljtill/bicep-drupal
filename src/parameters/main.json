@@ -10,12 +10,24 @@
                     "location": ""
                 },
                 "resources": {
-                    "keyVault": {},
-                    "storageAccount": {},
-                    "mariaDb": {},
-                    "appServicePlan": {},
-                    "appService": {},
-                    "deploymentScript": {}
+                    "keyVault": {
+                        "name": ""
+                    },
+                    "storageAccount": {
+                        "name": ""
+                    },
+                    "mariaDb": {
+                        "name": ""
+                    },
+                    "appServicePlan": {
+                        "name": ""
+                    },
+                    "appService": {
+                        "name": ""
+                    },
+                    "deploymentScript": {
+                        "name": ""
+                    }
                 },
                 "tags": {}
             }
