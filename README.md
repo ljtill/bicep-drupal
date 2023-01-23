@@ -12,7 +12,7 @@ _Please note these artifacts are under development and subject to change._
 
 Before deploying the Drupal resources, the parameters file `src/parameters/main.json` needs to be updated.
 
-#### Using locally with [Azure CLI](https://learn.microsoft.com/cli/azure/)
+#### Using locally with Azure CLI
 
 ```bash
 az deployment sub validate \
