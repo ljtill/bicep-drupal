@@ -11,8 +11,8 @@ targetScope = 'resourceGroup'
 // Key Vault
 
 resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
-  name: config.resources.name
-  location: config.location
+  name: settings.resources.keyVault.name
+  location: settings.resourceGroup.location
   properties: {
     tenantId: tenant().tenantId
     sku: {
@@ -25,13 +25,13 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
   resource databaseUsername 'secrets' = {
     name: 'database-username'
     properties: {
-      value: credential.username
+      value: username
     }
   }
   resource databasePassword 'secrets' = {
     name: 'database-password'
     properties: {
-      value: credential.password
+      value: password
     }
   }
 }
@@ -39,8 +39,8 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
 // Storage Account
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: config.resources.name
-  location: config.location
+  name: settings.resources.storageAccount.name
+  location: settings.resourceGroup.location
   kind: 'FileStorage'
   sku: {
     name: 'Premium_LRS'
@@ -59,16 +59,16 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
 // MariaDB
 
 resource mariaDb 'Microsoft.DBforMariaDB/servers@2018-06-01' = {
-  name: config.resources.name
-  location: config.location
+  name: settings.resources.mariaDb.name
+  location: settings.resourceGroup.location
   sku: {
     name: 'GP_Gen5_4'
   }
   properties: {
     createMode: 'Default'
     version: '10.3'
-    administratorLogin: credential.username
-    administratorLoginPassword: credential.password
+    administratorLogin: username
+    administratorLoginPassword: password
     sslEnforcement: 'Enabled'
     minimalTlsVersion: 'TLS1_2'
     publicNetworkAccess: 'Enabled'
@@ -88,8 +88,8 @@ resource mariaDb 'Microsoft.DBforMariaDB/servers@2018-06-01' = {
 // App Service
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
-  name: config.resources.name
-  location: config.location
+  name: settings.resources.appServicePlan.name
+  location: settings.resourceGroup.location
   properties: {
     reserved: true
   }
@@ -99,8 +99,8 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   }
 }
 resource appService 'Microsoft.Web/sites@2022-03-01' = {
-  name: config.resources.name
-  location: config.location
+  name: settings.resources.appService.name
+  location: settings.resourceGroup.location
   identity: {
     type: 'SystemAssigned'
   }
@@ -177,8 +177,8 @@ resource appService 'Microsoft.Web/sites@2022-03-01' = {
 // Deployment Script
 
 resource script 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
-  name: config.resources.name
-  location: config.location
+  name: settings.resources.deploymentScript.name
+  location: settings.resourceGroup.location
   kind: 'AzureCLI'
   properties: {
     azCliVersion: '2.41.0'
@@ -232,7 +232,10 @@ var shareName = {
 // Parameters
 // ----------
 
-param config object
+param defaults object
+param settings object
 
 @secure()
-param credential object
+param username string
+@secure()
+param password string

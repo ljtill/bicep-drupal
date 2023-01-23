@@ -3,18 +3,14 @@
         "core": {
             "enabled": true,
             "verbose": false,
-            "rules": {
-              "no-unused-vars": {
-                "level": "off"
-              }
-}
+            "rules": {}
+        },
+        "cloud": {
+            "currentProfile": "AzureCloud"
+        },
+        "moduleAliases": {
+            "ts": {},
+            "br": {}
         }
-    },
-    "cloud": {
-        "currentProfile": "AzureCloud"
-    },
-    "moduleAliases": {
-        "ts": {},
-        "br": {}
     }
 }
